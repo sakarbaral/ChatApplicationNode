@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            list-style-type: none !important;
+        }
+        
+    </style>
+    <title>Chat Application</title>
+
+</head>
+<body>
+    <form id="message-form" action="" method="post">
+        <input type="text" id="message-txt" placeholder="Enter your message">
+        <button type="submit" id="submit-btn">Submit</button>
+
+    </form>
+    <button type="submit" id="send-location">Send location</button>
+
+    <script id="message-template" type="text/template">
+        <li class="message">
+            <div class="message_title">
+                <h4>{{from}}</h4>
+                <span>{{timeStamp}}</span>
+            </div>
+            <div class="message_body"><p>{{text}}</p></div>
+        </li>
+    </script>
+    <script id="location-template" type="text/template">
+        <li class="message">
+            <div class="message_title">
+                <h4>{{from}}</h4>
+                <span>{{timeStamp}}</span>
+            </div>
+            <div class="message_body"><a href="{{text}}" target="_blank">Location</p></div>
+        </li>
+    </script>
+   
+<script src="./js/chatPage.js"></script>
+<script src="./js/libs/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.min.js"></script>
+
+</body>
+</html> 
