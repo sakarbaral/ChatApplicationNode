@@ -4,10 +4,10 @@ let socket= io();
 socket.on('connect',()=>{
     console.log("Connected to the server");
     
-    socket.emit('newMessage',{
-        from: "Joka",
-        message:"YOYO WASSAPP"
-    })
+    // socket.emit('newMessage',{
+    //     from: "lala",
+    //     message:"YOYO WASSAPP"
+    // })
 });
 
 socket.on('disconnect',()=>{

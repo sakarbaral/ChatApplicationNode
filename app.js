@@ -14,14 +14,28 @@ const port= process.env.PORT || 3000;
 
 io.on('connection',(socket)=>{
     console.log("A user has connected");
+    
 
     socket.emit('rcvMessage',{
         from:"Admin",
-        message:"Message has been received"
+        message:"Welcome to the chatapp",
+        timeStamp: new Date().getTime()
+    });
+
+    socket.broadcast.emit('rcvMessage',{
+        from:"Admin",
+        message:"A new user has just joined",
+        timeStamp: new Date().getTime()
     });
 
     socket.on('newMessage',(message)=>{
         console.log("newMessage",message);
+        io.emit('rcvMessage',{
+            from: message.from,
+            text: message.text,
+            timeStamp: new Date().getTime()
+        })
+    
     })
 
     socket.on('disconnect',()=>{
