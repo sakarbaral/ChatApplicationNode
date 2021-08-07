@@ -5,11 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            list-style-type: none !important;
+        }
+        
+    </style>
     <title>Chat Application</title>
 
 </head>
 <body>
-    <h1>Wassap homies</h1>
+    <form id="message-form" action="" method="post">
+        <input type="text" id="message-txt" placeholder="Enter your message">
+        <button type="submit" id="submit-btn">Submit</button>
+
+    </form>
+    <button type="submit" id="send-location">Send location</button>
 
 <script src="/js/index.js"></script>
 </body>
