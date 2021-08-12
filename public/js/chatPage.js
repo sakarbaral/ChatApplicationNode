@@ -8,6 +8,15 @@ messages.scrollIntoView();
 
 socket.on('connect',()=>{
     console.log("Connected to the server");
+    let search=window.location.search.substring(1);
+    let vars=JSON.parse('{"'+decodeURI(search).replace(/&/g,'","').replace(/\+/g,'" "').replace(/\=/g,'":"')+'"}');
+    socket.emit('join',vars,(err)=>{
+        if(err){
+            alert(err);
+            window.location.href="/";
+        }
+       
+    })
     
     // socket.emit('newMessage',{
     //     from: "lala",

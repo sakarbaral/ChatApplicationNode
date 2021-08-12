@@ -3,7 +3,8 @@ var path = require("path");
 const http=require('http');
 const socketIO=require('socket.io');
 
-const {createMessage,getMap}=require('./utils/message.js')
+const {createMessage,getMap}=require('./utils/message.js');
+const {checkString}=require('./utils/checkString.js');
 
 const app=express();
 const server=http.createServer(app);
@@ -18,9 +19,19 @@ io.on('connection',(socket)=>{
     console.log("A user has connected");
     
 
-    socket.emit('rcvMessage',createMessage("Admin","Welcome to the chatapp"));
 
-    socket.broadcast.emit('rcvMessage',createMessage('Admin',"A new user has just joined"));
+    socket.on('join',(message,callback)=>{
+        if(!checkString(message.name)||!checkString(message.room))
+        callback("Name and room is required");
+
+        socket.join(message.room);
+        
+    socket.emit('rcvMessage',createMessage("Admin",`Welcome to ${message.room}`));
+
+    socket.broadcast.to(message.room).emit('rcvMessage',createMessage('Admin',"A new user has just joined"));
+
+    });
+
 
     socket.on('newMessage',(message,callback)=>{
         console.log("newMessage",message);
